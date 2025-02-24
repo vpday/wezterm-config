@@ -56,6 +56,8 @@ local keys = {
    -- copy/paste --
    { key = 'c',          mods = 'CTRL|SHIFT',  action = act.CopyTo('Clipboard') },
    { key = 'v',          mods = 'CTRL|SHIFT',  action = act.PasteFrom('Clipboard') },
+   { key = 'v',          mods = 'CTRL',        action = act.PasteFrom('Clipboard') },
+   { key = 'Insert',     mods = 'CTRL',        action = act.PasteFrom('Clipboard') },
 
    -- tabs --
    -- tabs: spawn+close
@@ -232,6 +234,16 @@ local key_tables = {
 }
 
 local mouse_bindings = {
+   {
+      event = {Down = {streak = 1, button = "Right"}},
+      mods = "NONE",
+      action = wezterm.action {PasteFrom = "Clipboard"}
+   },
+   {
+      event = {Up = {streak = 1, button = "Left"}},
+      mods = "NONE",
+      action = wezterm.action {CompleteSelection = "PrimarySelection"}
+   },
    -- Ctrl-click will open the link under the mouse cursor
    {
       event = { Up = { streak = 1, button = 'Left' } },
